@@ -1,0 +1,2 @@
+Pure Python get_rotation_matrix: 0.0104 seconds
+Cythonized get_rotation_matrix: 0.0005 seconds
