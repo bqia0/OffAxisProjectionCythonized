@@ -1,4 +1,5 @@
 import PurePython
+import PurePythonCompiled
 import OffAxisProjectionCythonized
 import numpy as np
 import time
@@ -46,20 +47,22 @@ def single_benchmark_OffAP():
     quantity_to_smooth = np.ones(num_particles)
     bounds = [-1, 1, -1, 1, -1, 1]
     normal_vector = np.array([-2., 2., -5])
-    resolution = (512, 512)
+    resolution = (256, 256)
     buf = np.zeros(resolution)
 
-    start = time.time()
-    PurePython.off_axis_projection_SPH(px, py, pz, particle_masses,
-                                       particle_densities, smoothing_length,
-                                       bounds, quantity_to_smooth, buf, normal_vector)
-    print(time.time() - start)
-    start = time.time()
-    OffAxisProjectionCythonized.off_axis_projection_SPH(px, py, pz, particle_masses,
-                                                        particle_densities, smoothing_length,
-                                                        bounds, quantity_to_smooth, buf, normal_vector)
-    print(time.time() - start)
-
+    #start = time.time()
+    #PurePython.off_axis_projection_SPH(px, py, pz, particle_masses,
+    #                                   particle_densities, smoothing_length,
+    #                                   bounds, quantity_to_smooth, buf, normal_vector)
+    #print(time.time() - start)
+    #start = time.time()
+    # OffAxisProjectionCythonized.off_axis_projection_SPH(px, py, pz, particle_masses,
+    #                                                     particle_densities, smoothing_length,
+    #                                                     bounds, quantity_to_smooth, buf, normal_vector)
+    #print(time.time() - start)
+    PurePythonCompiled.off_axis_projection_SPH(px, py, pz, particle_masses,
+                                               particle_densities, smoothing_length,
+                                               bounds, quantity_to_smooth, buf, normal_vector)
 
 if __name__ == '__main__':
     single_benchmark_OffAP()
